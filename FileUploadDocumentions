@@ -1,0 +1,9 @@
+npm i express-fileupload
+const fileUpload = require('express-fileupload')
+app.use(express.static('doctors'))
+app.use(fileUpload())
+doctors namer akta folder create korte hobe
+
+const fs = require('fs-extra')
+
+npm i fs-extra

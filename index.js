@@ -80,9 +80,9 @@ app.post('/addDoctor',(req,res)=>{
     const newImage = fs.readFileSync(filePath)
     const encImg = newImage.toString('base64')
     var image = {
-      contentType: req.files.file.mimetype,
-      size: req.files.file.size,
-      img:Buffer(encImg,'base64')
+      contentType: file.mimetype,
+      size: file.size,
+      img:Buffer.form(encImg,'base64')
     }
     doctorCollection.insertOne({name,email,image})
     // res.send({name:file.name,path:`/${file.name}`})

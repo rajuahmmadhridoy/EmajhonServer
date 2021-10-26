@@ -21,6 +21,9 @@ const client = new MongoClient(uri, {
 client.connect((err) => {
   const appointmentCollection = client.db("DoctorsPortal").collection("appointments");
   const doctorCollection = client.db("DoctorsPortal").collection("doctors");
+  app.get('/',(req,res)=>{
+    res.send('hello all')
+  })
     app.post('/addappointment',(req,res)=>{
         const appointment = req.body;
         appointmentCollection.insertOne(appointment)
@@ -80,9 +83,9 @@ app.post('/addDoctor',(req,res)=>{
     const newImage = fs.readFileSync(filePath)
     const encImg = newImage.toString('base64')
     var image = {
-      contentType: file.mimetype,
-      size: file.size,
-      img:Buffer.form(encImg,'base64')
+      contentType: req.files.file.mimetype,
+      size: req.files.file.size,
+      img:Buffer(encImg,'base64')
     }
     doctorCollection.insertOne({name,email,image})
     // res.send({name:file.name,path:`/${file.name}`})
